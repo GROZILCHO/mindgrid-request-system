@@ -11,6 +11,8 @@ namespace MindGrid\RequestSystem;
 
 use MindGrid\RequestSystem\Admin\AdminMenu;
 use MindGrid\RequestSystem\Admin\RequestColumns;
+use MindGrid\RequestSystem\Admin\RequestListFilters;
+use MindGrid\RequestSystem\Admin\RequestMetaboxes;
 use MindGrid\RequestSystem\PostTypes\RequestPostType;
 use MindGrid\RequestSystem\Statuses\RequestStatuses;
 
@@ -27,8 +29,12 @@ final class Plugin
 
         if (is_admin()) {
             add_action('admin_menu', array(AdminMenu::class, 'register'));
+            add_action('add_meta_boxes_' . RequestPostType::POST_TYPE, array(RequestMetaboxes::class, 'register'));
+            add_action('save_post_' . RequestPostType::POST_TYPE, array(RequestMetaboxes::class, 'save'), 20, 3);
             add_filter('manage_' . RequestPostType::POST_TYPE . '_posts_columns', array(RequestColumns::class, 'register_columns'));
             add_action('manage_' . RequestPostType::POST_TYPE . '_posts_custom_column', array(RequestColumns::class, 'render_column'), 10, 2);
+            add_action('restrict_manage_posts', array(RequestListFilters::class, 'render_status_filter'));
+            add_action('pre_get_posts', array(RequestListFilters::class, 'apply_status_filter'));
         }
     }
 }

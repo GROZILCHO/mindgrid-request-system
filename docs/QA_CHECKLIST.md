@@ -17,15 +17,33 @@
 - [ ] Top-level `MindGrid Requests` menu appears for administrators.
 - [ ] `mgrs_request` list table is visible in admin.
 - [ ] List table shows Request ID, Status, and Date columns.
-- [ ] Default status displays as `New` when no valid status meta exists.
-- [ ] Non-administrator roles cannot access request management in Sprint 1.
+- [ ] Request ID displays as `MRS-{post_id}`.
+- [ ] No `_mgrs_request_id` meta is created.
+- [ ] Default status displays as `Нова` when no valid status meta exists.
+- [ ] Status filter appears on the request list table.
+- [ ] Status filter returns matching requests.
+- [ ] Non-administrator roles cannot access request management in Sprint 2.
+
+## Request Edit Screen
+
+- [ ] Request Status metabox loads.
+- [ ] Status dropdown contains the approved status registry values.
+- [ ] Status saves and reloads.
+- [ ] Invalid status values fall back to `new`.
+- [ ] Contact name saves and reloads.
+- [ ] Contact phone saves and reloads.
+- [ ] Contact email saves and reloads.
+- [ ] Internal notes save and reload.
+- [ ] Created source displays as `manual_admin` for manual admin-created requests.
+- [ ] Created source is read-only and immutable after creation.
+- [ ] Existing Sprint 1 requests without source metadata load safely with `manual_admin` fallback.
 
 ## Frontend
 
 - [ ] No frontend archive is available for `mgrs_request`.
 - [ ] No single frontend request view is available.
 - [ ] No global frontend assets are loaded by the plugin.
-- [ ] REST API exposure is disabled for Sprint 1.
+- [ ] REST API exposure remains disabled.
 
 ## Deactivation
 

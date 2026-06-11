@@ -1,6 +1,6 @@
 # Smart Request Flow UX
 
-Sprint 3 provides a five-step browser-only prototype.
+Sprint 3 introduced a five-step browser-only prototype. Sprint 4 adds a real final submit action after the review step.
 
 ## Steps
 
@@ -29,17 +29,15 @@ Sprint 3 requires:
 - `contact_name`
 - `contact_phone`
 
-The prototype blocks Next navigation until required fields in the current step are completed.
+The flow blocks Next navigation until required fields in the current step are completed. Sprint 4 repeats required-field validation on the server before any request is created.
 
-## Review Screen
+## Review And Submit
 
-The final screen shows a readable summary of entered prototype data and the message:
+The final screen shows a readable summary of entered request data. A submit button appears only on this final review screen.
 
-```text
-Prototype only. Submission engine is not active.
-```
+On submit, the browser sends a standard POST request to `admin-post.php`. No AJAX or REST request is used.
 
-There is no submit button. No data is sent or saved.
+Success and failure states are displayed after redirecting back to the flow page.
 
 ## Accessibility
 

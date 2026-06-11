@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 - 2026-06-11
+
+- Added frontend submission engine using standard POST and WordPress `admin-post.php`.
+- Added nonce, honeypot, sanitization, and server-side validation for frontend submissions.
+- Added request creation service for frontend-created `mgrs_request` records.
+- Added `_mgrs_submission_summary` meta for plain-text submitted request details.
+- Added success and failure redirect states for the request flow.
+- Added read-only admin display for stored submission summaries.
+- Added Sprint 4 submission engine documentation.
+
 ## 0.3.0 - 2026-06-11
 
 - Added frontend Smart Request Flow prototype shortcode `[mindgrid_request_flow]`.

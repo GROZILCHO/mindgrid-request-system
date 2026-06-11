@@ -22,7 +22,7 @@
 - [ ] Default status displays as `Нова` when no valid status meta exists.
 - [ ] Status filter appears on the request list table.
 - [ ] Status filter returns matching requests.
-- [ ] Non-administrator roles cannot access request management in Sprint 2.
+- [ ] Non-administrator roles cannot access request management.
 
 ## Request Edit Screen
 
@@ -37,6 +37,7 @@
 - [ ] Created source displays as `manual_admin` for manual admin-created requests.
 - [ ] Created source is read-only and immutable after creation.
 - [ ] Existing Sprint 1 requests without source metadata load safely with `manual_admin` fallback.
+- [ ] Frontend submission summary displays as read-only plain text.
 
 ## Frontend
 
@@ -45,19 +46,22 @@
 - [ ] Frontend request flow assets load only on pages containing `[mindgrid_request_flow]`.
 - [ ] REST API exposure remains disabled.
 
-## Request Flow
+## Sprint 5 Request Flow
 
-- [ ] `[mindgrid_request_flow]` renders a five-step flow.
+- [ ] `[mindgrid_request_flow]` renders a five-step Bulgarian flow.
+- [ ] Service options are `moving_home`, `moving_office`, `moving_helpers`, `transport_van`, `clearing`, and `other`.
 - [ ] Next and Back navigation works by keyboard and pointer.
 - [ ] Step indicator and progress indicator update correctly.
-- [ ] Required `service_type`, `contact_name`, and `contact_phone` fields block continuation when empty.
+- [ ] Required `service_type`, `city_area`, `contact_name`, and `contact_phone` fields block continuation when empty.
 - [ ] Review screen shows entered request data.
+- [ ] Review screen states that the form does not calculate an automatic price.
+- [ ] Review screen states that submission is not a confirmed reservation.
 - [ ] Submit button appears only on the final review screen.
 - [ ] Submit button disables on click.
 - [ ] No localStorage, cookies, AJAX, or REST is used.
 - [ ] Layout has no horizontal overflow at 375px and remains usable at 390px, 768px, and desktop widths.
 
-## Sprint 4 Submission Engine
+## Submission Engine
 
 - [ ] Successful frontend submission creates a new `mgrs_request`.
 - [ ] Successful submission redirects back with success state.
@@ -68,13 +72,17 @@
 - [ ] Invalid nonce does not create a request.
 - [ ] Filled honeypot does not create a request.
 - [ ] Invalid `service_type` does not create a request.
+- [ ] Missing `city_area` does not create a request.
 - [ ] Missing `contact_name` does not create a request.
 - [ ] Missing `contact_phone` does not create a request.
 - [ ] Invalid optional `contact_email` does not create a request.
+- [ ] Invalid extra service values do not create a request.
+- [ ] Invalid request urgency values do not create a request.
 - [ ] Frontend-created request status is `new`.
 - [ ] Frontend-created request source is `frontend_form`.
 - [ ] Contact fields are populated in admin.
-- [ ] `_mgrs_submission_summary` is populated with plain-text submitted details.
+- [ ] `_mgrs_service_type`, `_mgrs_contact_time`, and `_mgrs_request_urgency` are populated when submitted.
+- [ ] `_mgrs_submission_summary` is populated with Bulgarian grouped plain-text submitted details.
 - [ ] `_mgrs_request_id` is not created.
 
 ## Deactivation

@@ -17,6 +17,9 @@
 - [ ] Confirm nonce and honeypot protection work.
 - [ ] Confirm failed submissions do not create requests.
 - [ ] Confirm successful submissions create `mgrs_request` records with approved meta only.
+- [ ] Confirm Sprint 5 Mestimvsichko-specific details remain in `_mgrs_submission_summary`.
+- [ ] Confirm only approved Sprint 5 reusable meta keys are added: `_mgrs_service_type`, `_mgrs_contact_time`, and `_mgrs_request_urgency`.
+- [ ] Confirm there is no pricing, booking, upload, email, settings, or builder behavior.
 - [ ] Confirm no out-of-scope features were added.
 
 ## Package

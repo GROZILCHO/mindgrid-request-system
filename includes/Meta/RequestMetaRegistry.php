@@ -23,6 +23,9 @@ final class RequestMetaRegistry
     public const INTERNAL_NOTES = '_mgrs_internal_notes';
     public const CREATED_SOURCE = '_mgrs_created_source';
     public const SUBMISSION_SUMMARY = '_mgrs_submission_summary';
+    public const SERVICE_TYPE = '_mgrs_service_type';
+    public const CONTACT_TIME = '_mgrs_contact_time';
+    public const REQUEST_URGENCY = '_mgrs_request_urgency';
     public const CREATED_SOURCE_MANUAL_ADMIN = 'manual_admin';
 
     /**
@@ -57,6 +60,27 @@ final class RequestMetaRegistry
                 'label' => __('Contact Email', 'mindgrid-request-system'),
                 'type' => 'email',
                 'sanitize' => 'email',
+                'default' => '',
+            ),
+            self::SERVICE_TYPE => array(
+                'key' => self::SERVICE_TYPE,
+                'label' => __('Service Type', 'mindgrid-request-system'),
+                'type' => 'readonly',
+                'sanitize' => 'key',
+                'default' => '',
+            ),
+            self::CONTACT_TIME => array(
+                'key' => self::CONTACT_TIME,
+                'label' => __('Contact Time', 'mindgrid-request-system'),
+                'type' => 'readonly',
+                'sanitize' => 'text',
+                'default' => '',
+            ),
+            self::REQUEST_URGENCY => array(
+                'key' => self::REQUEST_URGENCY,
+                'label' => __('Request Urgency', 'mindgrid-request-system'),
+                'type' => 'readonly',
+                'sanitize' => 'key',
                 'default' => '',
             ),
             self::INTERNAL_NOTES => array(
@@ -104,6 +128,10 @@ final class RequestMetaRegistry
             $source = sanitize_key($value);
 
             return '' !== $source ? $source : self::CREATED_SOURCE_MANUAL_ADMIN;
+        }
+
+        if ('key' === $strategy) {
+            return sanitize_key($value);
         }
 
         return sanitize_text_field($value);

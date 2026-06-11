@@ -52,6 +52,9 @@ final class RequestCreator
         update_post_meta($post_id, RequestMetaRegistry::CONTACT_NAME, $data['contact_name']);
         update_post_meta($post_id, RequestMetaRegistry::CONTACT_PHONE, $data['contact_phone']);
         update_post_meta($post_id, RequestMetaRegistry::CONTACT_EMAIL, $data['contact_email']);
+        update_post_meta($post_id, RequestMetaRegistry::SERVICE_TYPE, $data['service_type']);
+        update_post_meta($post_id, RequestMetaRegistry::CONTACT_TIME, $data['contact_time']);
+        update_post_meta($post_id, RequestMetaRegistry::REQUEST_URGENCY, $data['request_urgency']);
         update_post_meta($post_id, RequestMetaRegistry::SUBMISSION_SUMMARY, self::build_submission_summary($data));
 
         return $post_id;
@@ -62,28 +65,107 @@ final class RequestCreator
      */
     private static function build_submission_summary(array $data): string
     {
-        $labels = array(
-            'service_type' => __('Service type', 'mindgrid-request-system'),
-            'city_area' => __('City / area', 'mindgrid-request-system'),
-            'floor' => __('Floor', 'mindgrid-request-system'),
-            'has_elevator' => __('Elevator', 'mindgrid-request-system'),
-            'parking_access' => __('Parking', 'mindgrid-request-system'),
-            'items' => __('Items', 'mindgrid-request-system'),
-            'extra_services' => __('Extra services', 'mindgrid-request-system'),
-            'notes' => __('Notes', 'mindgrid-request-system'),
-        );
         $lines = array();
 
-        foreach ($labels as $key => $label) {
-            $value = $data[$key] ?? '';
-
-            if ('' === $value) {
-                continue;
-            }
-
-            $lines[] = $label . ': ' . $value;
-        }
+        $lines[] = __('УСЛУГА', 'mindgrid-request-system');
+        $lines[] = self::label_for('service_type', $data['service_type'] ?? '');
+        $lines[] = '';
+        $lines[] = __('ЛОКАЦИЯ', 'mindgrid-request-system');
+        $lines[] = __('Град/район:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['city_area'] ?? '');
+        $lines[] = __('От:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['from_address'] ?? '');
+        $lines[] = __('До:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['to_address'] ?? '');
+        $lines[] = '';
+        $lines[] = __('ДОСТЪП', 'mindgrid-request-system');
+        $lines[] = __('Етаж:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['floor'] ?? '');
+        $lines[] = __('Асансьор:', 'mindgrid-request-system') . ' ' . self::label_or_dash('yes_no', $data['has_elevator'] ?? '');
+        $lines[] = __('Паркиране:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['parking_access'] ?? '');
+        $lines[] = '';
+        $lines[] = __('ТОВАР', 'mindgrid-request-system');
+        $lines[] = __('Описание:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['items_description'] ?? '');
+        $lines[] = __('Кашони/чували:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['boxes_bags_count'] ?? '');
+        $lines[] = __('Тежки предмети:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['heavy_items'] ?? '');
+        $lines[] = __('Разглобяване:', 'mindgrid-request-system') . ' ' . self::label_or_dash('yes_no', $data['disassembly_needed'] ?? '');
+        $lines[] = '';
+        $lines[] = __('ДОПЪЛНИТЕЛНИ УСЛУГИ', 'mindgrid-request-system');
+        $lines[] = self::extra_services_labels($data['extra_services'] ?? '');
+        $lines[] = '';
+        $lines[] = __('БЕЛЕЖКИ', 'mindgrid-request-system');
+        $lines[] = self::value_or_dash($data['notes'] ?? '');
+        $lines[] = '';
+        $lines[] = __('КОНТАКТ', 'mindgrid-request-system');
+        $lines[] = __('Име:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_name'] ?? '');
+        $lines[] = __('Телефон:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_phone'] ?? '');
+        $lines[] = __('Email:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_email'] ?? '');
+        $lines[] = __('Удобно време:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_time'] ?? '');
+        $lines[] = __('Спешност:', 'mindgrid-request-system') . ' ' . self::label_or_not_specified('request_urgency', $data['request_urgency'] ?? '');
 
         return implode("\n", $lines);
+    }
+
+    private static function value_or_dash(string $value): string
+    {
+        return '' !== $value ? $value : '-';
+    }
+
+    private static function label_or_dash(string $group, string $value): string
+    {
+        $label = self::label_for($group, $value);
+
+        return '' !== $label ? $label : '-';
+    }
+
+    private static function label_or_not_specified(string $group, string $value): string
+    {
+        $label = self::label_for($group, $value);
+
+        return '' !== $label ? $label : __('Не е посочено', 'mindgrid-request-system');
+    }
+
+    private static function label_for(string $group, string $value): string
+    {
+        $labels = array(
+            'service_type' => array(
+                'moving_home' => __('Преместване на жилище', 'mindgrid-request-system'),
+                'moving_office' => __('Преместване на офис', 'mindgrid-request-system'),
+                'moving_helpers' => __('Хамалски услуги', 'mindgrid-request-system'),
+                'transport_van' => __('Транспорт с бус', 'mindgrid-request-system'),
+                'clearing' => __('Изхвърляне / разчистване', 'mindgrid-request-system'),
+                'other' => __('Друго', 'mindgrid-request-system'),
+            ),
+            'yes_no' => array(
+                'yes' => __('Да', 'mindgrid-request-system'),
+                'no' => __('Не', 'mindgrid-request-system'),
+            ),
+            'request_urgency' => array(
+                'urgent' => __('Спешно', 'mindgrid-request-system'),
+                'this_week' => __('Тази седмица', 'mindgrid-request-system'),
+                'flexible' => __('Гъвкаво', 'mindgrid-request-system'),
+            ),
+            'extra_services' => array(
+                'packing' => __('Опаковане', 'mindgrid-request-system'),
+                'disassembly' => __('Демонтаж', 'mindgrid-request-system'),
+                'assembly' => __('Монтаж', 'mindgrid-request-system'),
+                'disposal' => __('Изхвърляне', 'mindgrid-request-system'),
+                'carry_up_stairs' => __('Качване по стълби', 'mindgrid-request-system'),
+                'carry_down_stairs' => __('Сваляне по стълби', 'mindgrid-request-system'),
+            ),
+        );
+
+        return $labels[$group][$value] ?? $value;
+    }
+
+    private static function extra_services_labels(string $value): string
+    {
+        if ('' === $value) {
+            return '-';
+        }
+
+        $labels = array();
+
+        foreach (explode(',', $value) as $item) {
+            $labels[] = self::label_for('extra_services', $item);
+        }
+
+        return implode(', ', $labels);
     }
 }

@@ -1,43 +1,60 @@
 # Smart Request Flow UX
 
-Sprint 3 introduced a five-step browser-only prototype. Sprint 4 adds a real final submit action after the review step.
+Sprint 5 drafts a Bulgarian Mestimvsichko-oriented request flow for moving, transport, helper, and clearing requests. The flow is demo/client-discussion ready and is not a final production booking or pricing workflow.
 
 ## Steps
 
-1. Service Type
+1. Каква услуга ви трябва?
    - `service_type`
-2. Address & Access
+2. Адрес и достъп
    - `city_area`
+   - `from_address`
+   - `to_address`
    - `floor`
    - `has_elevator`
    - `parking_access`
-3. Items & Volume
-   - `items`
-4. Extra Services & Notes
+3. Какво трябва да се премести?
+   - `items_description`
+   - `boxes_bags_count`
+   - `heavy_items`
+   - `disassembly_needed`
+4. Допълнителни услуги
    - `extra_services`
    - `notes`
-5. Contact & Review
+5. Контакт и удобен момент
    - `contact_name`
    - `contact_phone`
    - `contact_email`
+   - `contact_time`
+   - `request_urgency`
 
 ## Required Fields
 
-Sprint 3 requires:
+Required in the browser and repeated on the server:
 
 - `service_type`
+- `city_area`
 - `contact_name`
 - `contact_phone`
 
-The flow blocks Next navigation until required fields in the current step are completed. Sprint 4 repeats required-field validation on the server before any request is created.
+Optional email must be valid when present.
 
 ## Review And Submit
 
-The final screen shows a readable summary of entered request data. A submit button appears only on this final review screen.
+The final screen shows a readable Bulgarian summary of entered request data. A submit button appears only on this final review screen.
 
 On submit, the browser sends a standard POST request to `admin-post.php`. No AJAX or REST request is used.
 
 Success and failure states are displayed after redirecting back to the flow page.
+
+## User-Facing Notes
+
+The review screen states that:
+
+- the form does not calculate an automatic price;
+- a representative will contact the customer to clarify details;
+- submission is not a confirmed reservation;
+- the final offer is prepared after reviewing the provided information.
 
 ## Accessibility
 

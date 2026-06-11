@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 - Unreleased
+
+- Drafted a Bulgarian Mestimvsichko-oriented five-step frontend request flow.
+- Added moving/transport service choices for the client demo flow.
+- Added reusable frontend metadata for service type, preferred contact time, and request urgency.
+- Updated frontend submission validation to require city/area along with service, name, and phone.
+- Updated frontend submission summaries to a Bulgarian grouped admin-readable format.
+- Kept client-specific request detail fields inside `_mgrs_submission_summary` instead of adding per-field metadata.
+
 ## 0.4.0 - 2026-06-11
 
 - Added frontend submission engine using standard POST and WordPress `admin-post.php`.

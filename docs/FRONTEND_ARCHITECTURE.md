@@ -1,6 +1,6 @@
 # Frontend Architecture
 
-Sprint 3 introduced a frontend browser prototype for the Smart Request Flow. Sprint 4 adds the first real submission engine using a standard POST form and WordPress `admin-post.php`.
+Sprint 3 introduced a frontend browser prototype for the Smart Request Flow. Sprint 4 adds the first real submission engine using a standard POST form and WordPress `admin-post.php`. Sprint 5 drafts a Bulgarian Mestimvsichko-oriented demo field set on top of that submission path.
 
 ## Shortcode
 
@@ -47,20 +47,29 @@ The frontend does not:
 
 Successful submissions create `mgrs_request` records through `RequestCreator`.
 
-## Sprint 4 Bridge
+## Sprint 5 Field Set
 
-The field keys are reserved for future mapping in a separately approved submission engine:
+The frontend flow uses Bulgarian UI copy and these field keys:
 
 - `service_type`
 - `city_area`
+- `from_address`
+- `to_address`
 - `floor`
 - `has_elevator`
 - `parking_access`
-- `items`
+- `items_description`
+- `boxes_bags_count`
+- `heavy_items`
+- `disassembly_needed`
 - `extra_services`
 - `notes`
 - `contact_name`
 - `contact_phone`
 - `contact_email`
+- `contact_time`
+- `request_urgency`
 
-The Sprint 4 submission engine maps approved frontend fields into request records and stores non-contact request detail text in `_mgrs_submission_summary`. Future sprints may add notifications, uploads, exports, settings, or client-specific field sets only after explicit approval.
+Reusable metadata stores only service type, contact fields, contact time, urgency, status, created source, and the submission summary. Mestimvsichko-specific operational details are stored inside `_mgrs_submission_summary` and are not promoted to separate meta fields.
+
+Sprint 5 remains demo/client-discussion ready. Future sprints may add production localization, notifications, uploads, exports, settings, pricing, booking, or client-specific workflow hardening only after explicit approval.

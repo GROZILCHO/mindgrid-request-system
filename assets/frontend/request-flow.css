@@ -27,6 +27,10 @@
     margin-bottom: 20px;
 }
 
+.mgrs-flow__form {
+    margin: 0;
+}
+
 .mgrs-flow__eyebrow {
     color: var(--mgrs-flow-muted);
     font-size: 0.875rem;
@@ -86,6 +90,41 @@
     color: var(--mgrs-flow-error);
     margin: 0 0 16px;
     padding: 10px 12px;
+}
+
+.mgrs-flow__message {
+    border-radius: 6px;
+    margin: 0 0 18px;
+    padding: 12px;
+}
+
+.mgrs-flow__message p {
+    margin: 0 0 6px;
+}
+
+.mgrs-flow__message p:last-child {
+    margin-bottom: 0;
+}
+
+.mgrs-flow__message--success {
+    background: #eefaf1;
+    border: 1px solid #a9ddb6;
+    color: #1f5f2b;
+}
+
+.mgrs-flow__message--error {
+    background: #fff2f2;
+    border: 1px solid #f2b5b5;
+    color: var(--mgrs-flow-error);
+}
+
+.mgrs-flow__honeypot {
+    height: 0;
+    left: -10000px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    width: 1px;
 }
 
 .mgrs-flow__step,
@@ -210,6 +249,11 @@
 
 .mgrs-flow__action:hover {
     background: var(--mgrs-flow-accent-dark);
+}
+
+.mgrs-flow__action:disabled {
+    cursor: progress;
+    opacity: 0.75;
 }
 
 .mgrs-flow__action--secondary {

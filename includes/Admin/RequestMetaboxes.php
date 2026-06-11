@@ -51,6 +51,15 @@ final class RequestMetaboxes
             'normal',
             'default'
         );
+
+        add_meta_box(
+            'mgrs_submission_summary',
+            __('Submission Summary', 'mindgrid-request-system'),
+            array(self::class, 'render_submission_summary_metabox'),
+            RequestPostType::POST_TYPE,
+            'normal',
+            'default'
+        );
     }
 
     public static function render_status_metabox(\WP_Post $post): void
@@ -99,6 +108,19 @@ final class RequestMetaboxes
 
         echo '<p><label for="mgrs_internal_notes"><strong>' . esc_html__('Internal Notes', 'mindgrid-request-system') . '</strong></label></p>';
         echo '<textarea id="mgrs_internal_notes" name="mgrs_internal_notes" rows="6" class="widefat">' . esc_textarea($value) . '</textarea>';
+    }
+
+    public static function render_submission_summary_metabox(\WP_Post $post): void
+    {
+        $value = get_post_meta($post->ID, RequestMetaRegistry::SUBMISSION_SUMMARY, true);
+        $value = is_string($value) ? $value : '';
+
+        if ('' === $value) {
+            echo '<p>' . esc_html__('No frontend submission summary is stored for this request.', 'mindgrid-request-system') . '</p>';
+            return;
+        }
+
+        echo '<textarea rows="8" class="widefat" readonly>' . esc_textarea($value) . '</textarea>';
     }
 
     public static function save(int $post_id, \WP_Post $post, bool $update): void

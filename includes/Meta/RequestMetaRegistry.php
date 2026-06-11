@@ -22,6 +22,7 @@ final class RequestMetaRegistry
     public const CONTACT_EMAIL = '_mgrs_contact_email';
     public const INTERNAL_NOTES = '_mgrs_internal_notes';
     public const CREATED_SOURCE = '_mgrs_created_source';
+    public const SUBMISSION_SUMMARY = '_mgrs_submission_summary';
     public const CREATED_SOURCE_MANUAL_ADMIN = 'manual_admin';
 
     /**
@@ -71,6 +72,13 @@ final class RequestMetaRegistry
                 'type' => 'readonly',
                 'sanitize' => 'created_source',
                 'default' => self::CREATED_SOURCE_MANUAL_ADMIN,
+            ),
+            self::SUBMISSION_SUMMARY => array(
+                'key' => self::SUBMISSION_SUMMARY,
+                'label' => __('Submission Summary', 'mindgrid-request-system'),
+                'type' => 'readonly_textarea',
+                'sanitize' => 'textarea',
+                'default' => '',
             ),
         );
     }

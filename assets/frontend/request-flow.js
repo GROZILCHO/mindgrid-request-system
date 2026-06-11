@@ -26,6 +26,8 @@
         var fields = Array.prototype.slice.call(flow.querySelectorAll('[data-mgrs-field]'));
         var backButton = flow.querySelector('[data-mgrs-back]');
         var nextButton = flow.querySelector('[data-mgrs-next]');
+        var submitButton = flow.querySelector('[data-mgrs-submit]');
+        var form = flow.querySelector('[data-mgrs-form]');
         var errorMessage = flow.querySelector('[data-mgrs-error]');
         var stepText = flow.querySelector('[data-mgrs-step-text]');
         var progressLabel = flow.querySelector('[data-mgrs-progress-label]');
@@ -97,6 +99,11 @@
 
             if (nextButton) {
                 nextButton.textContent = currentStep === steps.length - 1 ? 'Review' : 'Next';
+                nextButton.hidden = false;
+            }
+
+            if (submitButton) {
+                submitButton.hidden = true;
             }
 
             var firstField = getVisibleStep().querySelector('[data-mgrs-field]');
@@ -172,6 +179,10 @@
                 nextButton.hidden = true;
             }
 
+            if (submitButton) {
+                submitButton.hidden = false;
+            }
+
             summary.focus();
         }
 
@@ -210,11 +221,32 @@
                         nextButton.hidden = false;
                     }
 
+                    if (submitButton) {
+                        submitButton.hidden = true;
+                    }
+
                     showStep(steps.length - 1);
                     return;
                 }
 
                 showStep(Math.max(0, currentStep - 1));
+            });
+        }
+
+        if (form && submitButton) {
+            form.addEventListener('submit', function (event) {
+                if (summary && summary.hidden) {
+                    event.preventDefault();
+
+                    if (nextButton) {
+                        nextButton.click();
+                    }
+
+                    return;
+                }
+
+                submitButton.disabled = true;
+                submitButton.textContent = 'Изпращане...';
             });
         }
 

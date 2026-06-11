@@ -10,7 +10,7 @@
 
 ## Future Sprints
 
-- Submission engine to map approved frontend prototype fields into request records after explicit Sprint 4 approval.
+- Harden and extend the Sprint 4 submission engine after staging QA.
 - Dedicated request editing experience beyond the Sprint 2 foundation.
 - Capability migration from `manage_options` to `manage_mgrs_requests`.
 - Request intake form or block when approved.

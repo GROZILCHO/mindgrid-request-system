@@ -11,6 +11,8 @@
 - [ ] Confirm status whitelist validation works.
 - [ ] Confirm created source remains immutable after creation.
 - [ ] Confirm `_mgrs_request_id` is not created.
+- [ ] Confirm frontend prototype shortcode does not persist or submit data.
+- [ ] Confirm frontend assets load only when `[mindgrid_request_flow]` is present.
 - [ ] Confirm no out-of-scope features were added.
 
 ## Package

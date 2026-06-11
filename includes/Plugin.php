@@ -13,6 +13,8 @@ use MindGrid\RequestSystem\Admin\AdminMenu;
 use MindGrid\RequestSystem\Admin\RequestColumns;
 use MindGrid\RequestSystem\Admin\RequestListFilters;
 use MindGrid\RequestSystem\Admin\RequestMetaboxes;
+use MindGrid\RequestSystem\Frontend\Assets\FrontendAssets;
+use MindGrid\RequestSystem\Frontend\Shortcodes\RequestFlowShortcode;
 use MindGrid\RequestSystem\PostTypes\RequestPostType;
 use MindGrid\RequestSystem\Statuses\RequestStatuses;
 
@@ -25,6 +27,9 @@ final class Plugin
     public function run(): void
     {
         add_action('init', array(RequestPostType::class, 'register'));
+        add_action('init', array(RequestFlowShortcode::class, 'register'));
+        add_action('wp_enqueue_scripts', array(FrontendAssets::class, 'register'));
+        add_action('wp_enqueue_scripts', array(FrontendAssets::class, 'maybe_enqueue'));
         add_action('save_post_' . RequestPostType::POST_TYPE, array(RequestStatuses::class, 'ensure_default_status'), 10, 3);
 
         if (is_admin()) {

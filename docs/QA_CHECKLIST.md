@@ -42,8 +42,20 @@
 
 - [ ] No frontend archive is available for `mgrs_request`.
 - [ ] No single frontend request view is available.
-- [ ] No global frontend assets are loaded by the plugin.
+- [ ] Frontend request flow assets load only on pages containing `[mindgrid_request_flow]`.
 - [ ] REST API exposure remains disabled.
+
+## Sprint 3 Prototype Flow
+
+- [ ] `[mindgrid_request_flow]` renders a five-step flow.
+- [ ] Next and Back navigation works by keyboard and pointer.
+- [ ] Step indicator and progress indicator update correctly.
+- [ ] Required `service_type`, `contact_name`, and `contact_phone` fields block continuation when empty.
+- [ ] Review screen shows entered prototype data.
+- [ ] Review screen shows `Prototype only. Submission engine is not active.`
+- [ ] No active or disabled submit button is displayed.
+- [ ] No localStorage, cookies, AJAX, REST, or backend submission is used.
+- [ ] Layout has no horizontal overflow at 375px and remains usable at 390px, 768px, and desktop widths.
 
 ## Deactivation
 

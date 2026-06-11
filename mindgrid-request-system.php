@@ -3,7 +3,7 @@
  * Plugin Name: MindGrid Request System
  * Plugin URI: https://mindgridstudio.com/
  * Description: Reusable request management foundation for MindGrid Studio WordPress projects.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Requires at least: 6.4
  * Requires PHP: 8.0
  * Author: MindGrid Studio
@@ -20,7 +20,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-define('MGRS_VERSION', '0.2.0');
+define('MGRS_VERSION', '0.3.0');
 define('MGRS_PLUGIN_FILE', __FILE__);
 define('MGRS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MGRS_PLUGIN_URL', plugin_dir_url(__FILE__));

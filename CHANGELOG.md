@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 - 2026-06-11
+
+- Added frontend Smart Request Flow prototype shortcode `[mindgrid_request_flow]`.
+- Added vanilla JavaScript step navigation and browser-memory review summary.
+- Added scoped frontend CSS for the prototype flow.
+- Added conditional frontend asset loading when the shortcode is present.
+- Added Sprint 3 frontend architecture and UX flow documentation.
+
 ## 0.2.0 - 2026-06-11
 
 - Added central request meta registry for approved Sprint 2 metadata.

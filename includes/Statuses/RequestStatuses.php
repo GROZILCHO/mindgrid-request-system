@@ -24,13 +24,13 @@ final class RequestStatuses
     public static function all(): array
     {
         return array(
-            'new' => __('New', 'mindgrid-request-system'),
-            'reviewing' => __('Reviewing', 'mindgrid-request-system'),
-            'needs_info' => __('Needs Info', 'mindgrid-request-system'),
-            'quoted' => __('Quoted', 'mindgrid-request-system'),
-            'confirmed' => __('Confirmed', 'mindgrid-request-system'),
-            'completed' => __('Completed', 'mindgrid-request-system'),
-            'cancelled' => __('Cancelled', 'mindgrid-request-system'),
+            'new' => __('Нова', 'mindgrid-request-system'),
+            'reviewing' => __('За преглед', 'mindgrid-request-system'),
+            'needs_info' => __('За уточнение', 'mindgrid-request-system'),
+            'quoted' => __('Оферта изпратена', 'mindgrid-request-system'),
+            'confirmed' => __('Потвърдена', 'mindgrid-request-system'),
+            'completed' => __('Изпълнена', 'mindgrid-request-system'),
+            'cancelled' => __('Отказана', 'mindgrid-request-system'),
         );
     }
 

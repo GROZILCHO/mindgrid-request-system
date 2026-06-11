@@ -13,8 +13,15 @@ The plugin avoids PHP 8.1+ and PHP 8.2-only language features. Code is written f
 
 ## WordPress Constraints
 
-The plugin uses standard WordPress APIs for custom post types, post meta, admin menus, list table columns, activation hooks, and deactivation hooks.
+The plugin uses standard WordPress APIs for custom post types, post meta, admin menus, metaboxes, list table columns, admin filters, activation hooks, and deactivation hooks.
 
 ## Frontend
 
-Sprint 1 does not register frontend routes, frontend assets, archives, single views, shortcodes, blocks, or REST endpoints.
+The plugin does not register frontend routes, frontend assets, archives, single views, shortcodes, blocks, or REST endpoints.
+
+## Sprint 2 Notes
+
+- Request IDs are computed from the WordPress post ID as `MRS-{post_id}`.
+- Request entity fields are stored only in approved post meta keys.
+- Created source is read-only after creation and defaults to `manual_admin` for manual admin-created requests.
+- Sprint 2 remains admin-only and does not introduce custom roles.

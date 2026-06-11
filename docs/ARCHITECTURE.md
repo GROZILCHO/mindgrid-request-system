@@ -1,6 +1,6 @@
 # Architecture
 
-MindGrid Request System v0.1.0 is a reusable WordPress plugin foundation.
+MindGrid Request System is a reusable WordPress plugin foundation for admin-managed request workflows.
 
 ## Bootstrap
 
@@ -12,7 +12,24 @@ All implementation classes use the `MindGrid\RequestSystem` namespace. The autol
 
 ## Storage
 
-Requests are stored as WordPress posts using the `mgrs_request` custom post type. Sprint 1 uses core CPT storage only and does not create custom database tables.
+Requests are stored as WordPress posts using the `mgrs_request` custom post type. The plugin uses core CPT and post meta storage only and does not create custom database tables.
+
+## Request Entity
+
+Sprint 2 adds the request entity foundation on top of the CPT. The human-facing request ID is computed as `MRS-{post_id}` and is not stored in post meta.
+
+Approved request metadata is centralized in `MindGrid\RequestSystem\Meta\RequestMetaRegistry`.
+
+Approved meta fields:
+
+- `_mgrs_status`
+- `_mgrs_contact_name`
+- `_mgrs_contact_phone`
+- `_mgrs_contact_email`
+- `_mgrs_internal_notes`
+- `_mgrs_created_source`
+
+The plugin must not create `_mgrs_request_id`.
 
 ## Statuses
 
@@ -28,12 +45,24 @@ Approved values:
 - `completed`
 - `cancelled`
 
-The default status is `new`.
+The default status is `new`. Invalid or missing status values fall back to `new`.
 
 ## Admin
 
-Sprint 1 exposes a top-level admin menu labelled `MindGrid Requests`. It links to the internal CPT list table and displays basic columns only.
+The admin exposes a top-level menu labelled `MindGrid Requests`. It links to the internal CPT list table.
+
+Sprint 2 admin editing includes:
+
+- Request Status metabox.
+- Contact Information metabox.
+- Internal Notes metabox.
+- Read-only Created Source display.
+- Status filter on the request list table.
 
 ## Permissions
 
-Sprint 1 uses administrator-only access through WordPress `manage_options`. The future capability constant `manage_mgrs_requests` is defined but not assigned to roles in v0.1.0.
+Sprint 2 remains administrator-only through WordPress `manage_options`. The future capability constant `manage_mgrs_requests` remains defined but is not assigned to roles.
+
+## Created Source
+
+Manual admin-created requests default to `_mgrs_created_source = manual_admin`. Created source is treated as immutable after creation. Existing Sprint 1 requests without source metadata display the `manual_admin` fallback safely.

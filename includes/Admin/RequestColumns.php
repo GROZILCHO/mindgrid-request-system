@@ -36,7 +36,7 @@ final class RequestColumns
     public static function render_column(string $column, int $post_id): void
     {
         if ('mgrs_request_id' === $column) {
-            echo esc_html((string) $post_id);
+            echo esc_html(RequestMetaboxes::format_request_id($post_id));
             return;
         }
 

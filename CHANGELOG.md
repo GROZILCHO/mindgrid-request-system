@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.0 - Unreleased
+## 0.4.0 - 2026-06-11
 
 - Added frontend submission engine using standard POST and WordPress `admin-post.php`.
 - Added nonce, honeypot, sanitization, and server-side validation for frontend submissions.

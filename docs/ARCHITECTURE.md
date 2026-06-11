@@ -29,6 +29,9 @@ Approved meta fields:
 - `_mgrs_internal_notes`
 - `_mgrs_created_source`
 - `_mgrs_submission_summary`
+- `_mgrs_service_type`
+- `_mgrs_contact_time`
+- `_mgrs_request_urgency`
 
 The plugin must not create `_mgrs_request_id`.
 
@@ -49,7 +52,24 @@ Frontend-created requests store:
 - `_mgrs_contact_name`
 - `_mgrs_contact_phone`
 - `_mgrs_contact_email`
+- `_mgrs_service_type`
+- `_mgrs_contact_time`
+- `_mgrs_request_urgency`
 - `_mgrs_submission_summary`
+
+## Sprint 5 Bulgarian UX Draft
+
+Sprint 5 updates the frontend flow into a Bulgarian Mestimvsichko-oriented demo field set for moving, transport, helper, and clearing requests. The flow remains a demo/client-discussion draft, not a final production booking or pricing workflow.
+
+Most service-specific details are intentionally stored only in `_mgrs_submission_summary` as grouped plain text. The plugin does not add separate meta fields for addresses, floors, item descriptions, heavy items, extra service choices, or notes.
+
+The only Sprint 5 reusable metadata additions are:
+
+- `_mgrs_service_type`
+- `_mgrs_contact_time`
+- `_mgrs_request_urgency`
+
+Sprint 5 does not add uploads, email notifications, autoresponders, price calculation, calendar/reservation logic, maps, AI, payments, SMS/WhatsApp, settings, builder UI, custom roles, external services, or theme changes.
 
 ## Statuses
 

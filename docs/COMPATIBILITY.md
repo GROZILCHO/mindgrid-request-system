@@ -17,7 +17,7 @@ The plugin uses standard WordPress APIs for custom post types, post meta, admin 
 
 ## Frontend
 
-The plugin does not register frontend routes, frontend assets, archives, single views, shortcodes, blocks, or REST endpoints.
+The plugin registers the `[mindgrid_request_flow]` shortcode and conditionally loads its frontend CSS/JS only when the shortcode is present. It does not register frontend routes, request archives, request single views, blocks, or REST endpoints.
 
 ## Sprint 2 Notes
 
@@ -25,3 +25,9 @@ The plugin does not register frontend routes, frontend assets, archives, single 
 - Request entity fields are stored only in approved post meta keys.
 - Created source is read-only after creation and defaults to `manual_admin` for manual admin-created requests.
 - Sprint 2 remains admin-only and does not introduce custom roles.
+
+## Sprint 5 Notes
+
+- The public flow is a Bulgarian Mestimvsichko demo draft.
+- The submission engine still uses standard POST and `admin-post.php`.
+- The plugin does not add uploads, email, pricing, booking, maps, AI, payments, settings, builder UI, custom roles, or external dependencies.

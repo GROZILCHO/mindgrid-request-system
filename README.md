@@ -30,6 +30,6 @@ The Smart Request Flow shortcode is:
 [mindgrid_request_flow]
 ```
 
-As of Sprint 4, the shortcode renders a five-step frontend flow that submits through WordPress `admin-post.php`. Successful submissions create `mgrs_request` records and store approved request metadata. Frontend assets load only when the shortcode is present.
+As of Sprint 5, the shortcode renders a Bulgarian five-step demo flow for the Mestimvsichko moving/transport use case. It submits through WordPress `admin-post.php`; successful submissions create `mgrs_request` records and store approved reusable metadata plus a grouped plain-text submission summary. Frontend assets load only when the shortcode is present.
 
-The submission engine does not use REST, AJAX, uploads, email, external services, payments, maps, AI, user accounts, or custom database tables.
+The Sprint 5 flow is demo/client-discussion ready, not a final production booking workflow. It does not use REST, AJAX, uploads, email, external services, payments, maps, AI, price calculation, calendar booking, user accounts, settings, builder UI, or custom database tables.

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 - Unreleased
+## 0.2.0 - 2026-06-11
 
 - Added central request meta registry for approved Sprint 2 metadata.
 - Added computed request ID display using `MRS-{post_id}` without storing `_mgrs_request_id`.

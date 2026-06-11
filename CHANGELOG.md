@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 - Unreleased
+## 0.3.0 - 2026-06-11
 
 - Added frontend Smart Request Flow prototype shortcode `[mindgrid_request_flow]`.
 - Added vanilla JavaScript step navigation and browser-memory review summary.

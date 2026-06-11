@@ -7,6 +7,10 @@
 - [ ] Confirm `CHANGELOG.md` contains the release entry.
 - [ ] Run PHP syntax checks for all plugin PHP files.
 - [ ] Run WordPress activation and deactivation checks.
+- [ ] Confirm request metabox nonce validation works.
+- [ ] Confirm status whitelist validation works.
+- [ ] Confirm created source remains immutable after creation.
+- [ ] Confirm `_mgrs_request_id` is not created.
 - [ ] Confirm no out-of-scope features were added.
 
 ## Package

@@ -10,7 +10,7 @@
 
 ## Future Sprints
 
-- Dedicated request editing experience.
+- Dedicated request editing experience beyond the Sprint 2 foundation.
 - Capability migration from `manage_options` to `manage_mgrs_requests`.
 - Request intake form or block when approved.
 - Notifications when email scope is approved.

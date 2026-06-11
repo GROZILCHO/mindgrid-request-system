@@ -28,8 +28,28 @@ Approved meta fields:
 - `_mgrs_contact_email`
 - `_mgrs_internal_notes`
 - `_mgrs_created_source`
+- `_mgrs_submission_summary`
 
 The plugin must not create `_mgrs_request_id`.
+
+## Submission Engine
+
+Sprint 4 adds the first frontend submission engine. The request flow submits a standard POST request to WordPress `admin-post.php`.
+
+Submission path:
+
+Frontend form -> `admin-post.php` -> `SubmissionHandler` -> nonce validation -> honeypot check -> sanitization -> server-side validation -> `RequestCreator` -> `wp_insert_post()` -> approved post meta storage -> redirect to success or failure state.
+
+The submission engine does not use REST, AJAX, uploads, email, external services, or custom database tables.
+
+Frontend-created requests store:
+
+- `_mgrs_status = new`
+- `_mgrs_created_source = frontend_form`
+- `_mgrs_contact_name`
+- `_mgrs_contact_phone`
+- `_mgrs_contact_email`
+- `_mgrs_submission_summary`
 
 ## Statuses
 
@@ -65,4 +85,4 @@ Sprint 2 remains administrator-only through WordPress `manage_options`. The futu
 
 ## Created Source
 
-Manual admin-created requests default to `_mgrs_created_source = manual_admin`. Created source is treated as immutable after creation. Existing Sprint 1 requests without source metadata display the `manual_admin` fallback safely.
+Manual admin-created requests default to `_mgrs_created_source = manual_admin`. Frontend-created requests use `_mgrs_created_source = frontend_form`. Created source is treated as immutable after creation. Existing Sprint 1 requests without source metadata display the `manual_admin` fallback safely.

@@ -22,12 +22,14 @@ Reusable WordPress plugin foundation for MindGrid Studio request workflows.
 
 No frontend form, shortcode, block, uploads, email, exports, settings page, custom database tables, REST API, Composer, npm, external services, or global frontend assets are included in Sprint 1.
 
-## Sprint 3 Prototype Shortcode
+## Request Flow Shortcode
 
-Sprint 3 adds a browser-only Smart Request Flow prototype shortcode:
+The Smart Request Flow shortcode is:
 
 ```text
 [mindgrid_request_flow]
 ```
 
-The shortcode renders a five-step frontend flow for UX validation. It does not submit data, create requests, write to the database, send email, call REST/AJAX endpoints, or persist browser state. Frontend assets load only when the shortcode is present.
+As of Sprint 4, the shortcode renders a five-step frontend flow that submits through WordPress `admin-post.php`. Successful submissions create `mgrs_request` records and store approved request metadata. Frontend assets load only when the shortcode is present.
+
+The submission engine does not use REST, AJAX, uploads, email, external services, payments, maps, AI, user accounts, or custom database tables.

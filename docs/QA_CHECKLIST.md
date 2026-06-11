@@ -45,17 +45,37 @@
 - [ ] Frontend request flow assets load only on pages containing `[mindgrid_request_flow]`.
 - [ ] REST API exposure remains disabled.
 
-## Sprint 3 Prototype Flow
+## Request Flow
 
 - [ ] `[mindgrid_request_flow]` renders a five-step flow.
 - [ ] Next and Back navigation works by keyboard and pointer.
 - [ ] Step indicator and progress indicator update correctly.
 - [ ] Required `service_type`, `contact_name`, and `contact_phone` fields block continuation when empty.
-- [ ] Review screen shows entered prototype data.
-- [ ] Review screen shows `Prototype only. Submission engine is not active.`
-- [ ] No active or disabled submit button is displayed.
-- [ ] No localStorage, cookies, AJAX, REST, or backend submission is used.
+- [ ] Review screen shows entered request data.
+- [ ] Submit button appears only on the final review screen.
+- [ ] Submit button disables on click.
+- [ ] No localStorage, cookies, AJAX, or REST is used.
 - [ ] Layout has no horizontal overflow at 375px and remains usable at 390px, 768px, and desktop widths.
+
+## Sprint 4 Submission Engine
+
+- [ ] Successful frontend submission creates a new `mgrs_request`.
+- [ ] Successful submission redirects back with success state.
+- [ ] Success state shows `Заявката е изпратена успешно.`
+- [ ] Success state shows `Номер на заявка: MRS-{post_id}`.
+- [ ] Failed submission redirects back with generic error state.
+- [ ] Missing nonce does not create a request.
+- [ ] Invalid nonce does not create a request.
+- [ ] Filled honeypot does not create a request.
+- [ ] Invalid `service_type` does not create a request.
+- [ ] Missing `contact_name` does not create a request.
+- [ ] Missing `contact_phone` does not create a request.
+- [ ] Invalid optional `contact_email` does not create a request.
+- [ ] Frontend-created request status is `new`.
+- [ ] Frontend-created request source is `frontend_form`.
+- [ ] Contact fields are populated in admin.
+- [ ] `_mgrs_submission_summary` is populated with plain-text submitted details.
+- [ ] `_mgrs_request_id` is not created.
 
 ## Deactivation
 

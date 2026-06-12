@@ -1,6 +1,6 @@
 # Smart Request Flow UX
 
-Sprint 5 drafts a Bulgarian Mestimvsichko-oriented request flow for moving, transport, helper, and clearing requests. The flow is demo/client-discussion ready and is not a final production booking or pricing workflow.
+Sprint 5 drafts a Bulgarian Mestimvsichko-oriented request flow for moving, transport, helper, and clearing requests. Sprint 6 adds a demo-only indicative estimate preview. The flow is demo/client-discussion ready and is not a final production booking or pricing workflow.
 
 ## Steps
 
@@ -13,6 +13,7 @@ Sprint 5 drafts a Bulgarian Mestimvsichko-oriented request flow for moving, tran
    - `floor`
    - `has_elevator`
    - `parking_access`
+   - `demo_distance_km`
 3. Какво трябва да се премести?
    - `items_description`
    - `boxes_bags_count`
@@ -41,7 +42,7 @@ Optional email must be valid when present.
 
 ## Review And Submit
 
-The final screen shows a readable Bulgarian summary of entered request data. A submit button appears only on this final review screen.
+The final screen shows a readable Bulgarian summary of entered request data and an indicative estimate range. A submit button appears only on this final review screen.
 
 On submit, the browser sends a standard POST request to `admin-post.php`. No AJAX or REST request is used.
 
@@ -51,7 +52,8 @@ Success and failure states are displayed after redirecting back to the flow page
 
 The review screen states that:
 
-- the form does not calculate an automatic price;
+- the form shows only a demo indicative estimate;
+- the displayed estimate is indicative and not a final offer;
 - a representative will contact the customer to clarify details;
 - submission is not a confirmed reservation;
 - the final offer is prepared after reviewing the provided information.

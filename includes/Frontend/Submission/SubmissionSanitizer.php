@@ -28,6 +28,7 @@ final class SubmissionSanitizer
             'floor' => self::sanitize_text_field($input, 'floor'),
             'has_elevator' => self::sanitize_key_field($input, 'has_elevator'),
             'parking_access' => self::sanitize_text_field($input, 'parking_access'),
+            'demo_distance_km' => self::sanitize_number_field($input, 'demo_distance_km', 300),
             'items_description' => self::sanitize_textarea_field($input, 'items_description'),
             'boxes_bags_count' => self::sanitize_text_field($input, 'boxes_bags_count'),
             'heavy_items' => self::sanitize_textarea_field($input, 'heavy_items'),
@@ -69,6 +70,20 @@ final class SubmissionSanitizer
         $value = self::string_value($input, $key);
 
         return sanitize_email($value);
+    }
+
+    private static function sanitize_number_field(array $input, string $key, float $max): string
+    {
+        $value = str_replace(',', '.', self::string_value($input, $key));
+
+        if ('' === $value || ! is_numeric($value)) {
+            return '0';
+        }
+
+        $number = min($max, max(0, (float) $value));
+        $formatted = number_format($number, 2, '.', '');
+
+        return rtrim(rtrim($formatted, '0'), '.');
     }
 
     private static function sanitize_key_list_field(array $input, string $key): string

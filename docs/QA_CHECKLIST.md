@@ -54,7 +54,8 @@
 - [ ] Step indicator and progress indicator update correctly.
 - [ ] Required `service_type`, `city_area`, `contact_name`, and `contact_phone` fields block continuation when empty.
 - [ ] Review screen shows entered request data.
-- [ ] Review screen states that the form does not calculate an automatic price.
+- [ ] Review screen shows an indicative estimate range.
+- [ ] Review screen states that the estimate is indicative and not a final offer.
 - [ ] Review screen states that submission is not a confirmed reservation.
 - [ ] Submit button appears only on the final review screen.
 - [ ] Submit button disables on click.
@@ -78,11 +79,14 @@
 - [ ] Invalid optional `contact_email` does not create a request.
 - [ ] Invalid extra service values do not create a request.
 - [ ] Invalid request urgency values do not create a request.
+- [ ] Empty or invalid `demo_distance_km` does not block submission and is treated as `0`.
+- [ ] `demo_distance_km` values above `300` are clamped to `300`.
 - [ ] Frontend-created request status is `new`.
 - [ ] Frontend-created request source is `frontend_form`.
 - [ ] Contact fields are populated in admin.
 - [ ] `_mgrs_service_type`, `_mgrs_contact_time`, and `_mgrs_request_urgency` are populated when submitted.
 - [ ] `_mgrs_submission_summary` is populated with Bulgarian grouped plain-text submitted details.
+- [ ] `_mgrs_submission_summary` includes the indicative estimate range and calculation method.
 - [ ] `_mgrs_request_id` is not created.
 
 ## Deactivation

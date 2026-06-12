@@ -169,6 +169,12 @@
     font-weight: 600;
 }
 
+.mgrs-flow__help {
+    color: var(--mgrs-flow-muted);
+    font-size: 0.875rem;
+    margin: 6px 0 0;
+}
+
 .mgrs-flow__input,
 .mgrs-flow__textarea {
     background: #ffffff;
@@ -243,6 +249,61 @@
 .mgrs-flow__summary-description {
     margin: 0;
     overflow-wrap: anywhere;
+}
+
+.mgrs-flow__estimate {
+    background: #ffffff;
+    border: 1px solid #c9d9ff;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    padding: 14px;
+}
+
+.mgrs-flow__estimate-label {
+    color: var(--mgrs-flow-muted);
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.mgrs-flow__estimate-value {
+    color: var(--mgrs-flow-text);
+    font-size: 1.375rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+}
+
+.mgrs-flow__estimate-disclaimer {
+    color: var(--mgrs-flow-muted);
+    margin: 0;
+}
+
+.mgrs-flow__live-estimate {
+    background: #ffffff;
+    border: 1px solid var(--mgrs-flow-border);
+    border-radius: 8px;
+    margin-top: 16px;
+    padding: 12px;
+}
+
+.mgrs-flow__live-estimate-label {
+    color: var(--mgrs-flow-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.mgrs-flow__live-estimate-value {
+    color: var(--mgrs-flow-text);
+    font-size: 1.125rem;
+    font-weight: 800;
+    margin: 0 0 4px;
+    overflow-wrap: anywhere;
+}
+
+.mgrs-flow__live-estimate-note {
+    color: var(--mgrs-flow-muted);
+    font-size: 0.875rem;
+    margin: 0;
 }
 
 .mgrs-flow__notice {

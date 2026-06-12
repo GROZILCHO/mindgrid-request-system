@@ -58,6 +58,7 @@ The frontend flow uses Bulgarian UI copy and these field keys:
 - `floor`
 - `has_elevator`
 - `parking_access`
+- `demo_distance_km`
 - `items_description`
 - `boxes_bags_count`
 - `heavy_items`
@@ -73,3 +74,11 @@ The frontend flow uses Bulgarian UI copy and these field keys:
 Reusable metadata stores only service type, contact fields, contact time, urgency, status, created source, and the submission summary. Mestimvsichko-specific operational details are stored inside `_mgrs_submission_summary` and are not promoted to separate meta fields.
 
 Sprint 5 remains demo/client-discussion ready. Future sprints may add production localization, notifications, uploads, exports, settings, pricing, booking, or client-specific workflow hardening only after explicit approval.
+
+## Sprint 6 Estimate Preview
+
+Sprint 6 adds a frontend-only estimate preview on the review screen. JavaScript calculates the visible indicative range from current browser field values for UX only.
+
+The frontend estimate is not trusted on submission. The server recalculates the estimate from sanitized POST data before writing `_mgrs_submission_summary`.
+
+Sprint 6 does not add AJAX, REST, Google Maps, Stripe, AI, external APIs, pricing settings, or payment buttons.

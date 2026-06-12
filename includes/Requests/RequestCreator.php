@@ -66,6 +66,7 @@ final class RequestCreator
     private static function build_submission_summary(array $data): string
     {
         $lines = array();
+        $estimate = DemoEstimateCalculator::calculate($data);
 
         $lines[] = __('УСЛУГА', 'mindgrid-request-system');
         $lines[] = self::label_for('service_type', $data['service_type'] ?? '');
@@ -79,6 +80,7 @@ final class RequestCreator
         $lines[] = __('Етаж:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['floor'] ?? '');
         $lines[] = __('Асансьор:', 'mindgrid-request-system') . ' ' . self::label_or_dash('yes_no', $data['has_elevator'] ?? '');
         $lines[] = __('Паркиране:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['parking_access'] ?? '');
+        $lines[] = __('Примерно разстояние в км:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['demo_distance_km'] ?? '');
         $lines[] = '';
         $lines[] = __('ТОВАР', 'mindgrid-request-system');
         $lines[] = __('Описание:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['items_description'] ?? '');
@@ -98,6 +100,13 @@ final class RequestCreator
         $lines[] = __('Email:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_email'] ?? '');
         $lines[] = __('Удобно време:', 'mindgrid-request-system') . ' ' . self::value_or_dash($data['contact_time'] ?? '');
         $lines[] = __('Спешност:', 'mindgrid-request-system') . ' ' . self::label_or_not_specified('request_urgency', $data['request_urgency'] ?? '');
+        $lines[] = '';
+        $lines[] = __('ОРИЕНТИРОВЪЧНА ЦЕНА', 'mindgrid-request-system');
+        $lines[] = DemoEstimateCalculator::format_range($estimate);
+        $lines[] = '';
+        $lines[] = __('МЕТОД НА ИЗЧИСЛЕНИЕ', 'mindgrid-request-system');
+        $lines[] = __('Базова услуга + обем + достъп + разстояние + допълнителни услуги', 'mindgrid-request-system');
+        $lines[] = __('Тази цена е ориентировъчна и не представлява финална оферта. Крайната цена се потвърждава след преглед на заявката.', 'mindgrid-request-system');
 
         return implode("\n", $lines);
     }

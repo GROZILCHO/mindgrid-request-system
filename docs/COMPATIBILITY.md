@@ -31,3 +31,10 @@ The plugin registers the `[mindgrid_request_flow]` shortcode and conditionally l
 - The public flow is a Bulgarian Mestimvsichko demo draft.
 - The submission engine still uses standard POST and `admin-post.php`.
 - The plugin does not add uploads, email, pricing, booking, maps, AI, payments, settings, builder UI, custom roles, or external dependencies.
+
+## Sprint 6 Notes
+
+- The estimate preview is demo-only and uses hardcoded local rules.
+- The frontend preview uses existing vanilla JavaScript only.
+- The server recalculates the estimate before saving the summary.
+- No Google Maps, Stripe, AI, external APIs, admin pricing settings, database tables, or new dependencies are introduced.

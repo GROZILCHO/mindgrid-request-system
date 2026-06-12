@@ -21,6 +21,13 @@
 - Add only minimal reusable metadata for service type, contact time, and urgency.
 - Keep pricing, booking, uploads, email, settings, builder UI, maps, AI, and payments out of scope.
 
+## Sprint 6 - Demo Estimate Preview
+
+- Add indicative estimate preview on the review screen.
+- Recalculate the demo estimate server-side before saving `_mgrs_submission_summary`.
+- Keep demo pricing hardcoded and explicitly non-binding.
+- Keep pricing settings, payments, Google Maps, AI, external APIs, and custom tables out of scope.
+
 ## Future Sprints
 
 - Dedicated request editing experience beyond the Sprint 2 foundation.

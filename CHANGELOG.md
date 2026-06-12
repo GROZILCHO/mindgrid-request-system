@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 - Unreleased
+
+- Added demo-only indicative estimate preview on the request review screen.
+- Added `demo_distance_km` as an optional manually entered demo distance field.
+- Added server-side demo estimate recalculation before saving the submission summary.
+- Added `_mgrs_submission_summary` sections for indicative price and calculation method.
+- Kept pricing rules hardcoded for demo discussion only; no production pricing settings, payments, maps, AI, or external APIs were added.
+
 ## 0.5.0 - Unreleased
 
 - Drafted a Bulgarian Mestimvsichko-oriented five-step frontend request flow.

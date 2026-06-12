@@ -15,6 +15,7 @@
         floor: 'Етаж',
         has_elevator: 'Има ли асансьор?',
         parking_access: 'Може ли бусът да спре близо?',
+        demo_distance_km: 'Примерно разстояние в км',
         items_description: 'Кратко описание',
         boxes_bags_count: 'Брой кашони / чували',
         heavy_items: 'Тежки или специфични предмети',
@@ -73,6 +74,10 @@
         var progressBar = flow.querySelector('[data-mgrs-progress-bar]');
         var summary = flow.querySelector('[data-mgrs-summary]');
         var summaryList = flow.querySelector('[data-mgrs-summary-list]');
+        var estimate = flow.querySelector('[data-mgrs-estimate]');
+        var estimateValue = flow.querySelector('[data-mgrs-estimate-value]');
+        var liveEstimate = flow.querySelector('[data-mgrs-live-estimate]');
+        var liveEstimateValue = flow.querySelector('[data-mgrs-live-estimate-value]');
         var currentStep = 0;
 
         function getVisibleStep() {
@@ -97,6 +102,14 @@
             }
 
             return labelFor(normalizedName(field), String(field.value || '').trim());
+        }
+
+        function rawFieldValue(field) {
+            if ('checkbox' === field.type) {
+                return field.checked ? String(field.value || '').trim() : '';
+            }
+
+            return String(field.value || '').trim();
         }
 
         function clearError() {
@@ -144,9 +157,14 @@
                 summary.hidden = true;
             }
 
+            if (liveEstimate) {
+                liveEstimate.hidden = false;
+            }
+
             currentStep = index;
             clearError();
             updateProgress();
+            updateLiveEstimate();
 
             if (backButton) {
                 backButton.hidden = currentStep === 0;
@@ -205,14 +223,117 @@
             return values;
         }
 
+        function rawValues() {
+            var values = {};
+
+            fields.forEach(function (field) {
+                var name = normalizedName(field);
+                var value = rawFieldValue(field);
+
+                if ('' === value) {
+                    return;
+                }
+
+                if (!values[name]) {
+                    values[name] = [];
+                }
+
+                values[name].push(value);
+            });
+
+            return values;
+        }
+
+        function numberValue(value) {
+            var normalized = String(value || '').replace(',', '.');
+            var parsed = Number(normalized);
+
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : 0;
+        }
+
+        function roundToNearestFive(value) {
+            return Math.round(value / 5) * 5;
+        }
+
+        function calculateEstimate(values) {
+            var serviceType = values.service_type && values.service_type[0] ? values.service_type[0] : 'other';
+            var basePrices = {
+                moving_home: 80,
+                moving_office: 120,
+                moving_helpers: 60,
+                transport_van: 70,
+                clearing: 90,
+                other: 80
+            };
+            var extraPrices = {
+                packing: 15,
+                disassembly: 20,
+                assembly: 20,
+                disposal: 20,
+                carry_up_stairs: 10,
+                carry_down_stairs: 10
+            };
+            var urgencyPrices = {
+                urgent: 30,
+                this_week: 10,
+                flexible: 0
+            };
+            var total = basePrices[serviceType] || basePrices.other;
+            var boxes = numberValue(values.boxes_bags_count && values.boxes_bags_count[0]);
+            var floor = numberValue(values.floor && values.floor[0]);
+            var distance = Math.min(300, numberValue(values.demo_distance_km && values.demo_distance_km[0]));
+            var urgency = values.request_urgency && values.request_urgency[0] ? values.request_urgency[0] : '';
+            var extras = values.extra_services || [];
+
+            total += boxes * 3;
+            total += values.heavy_items && values.heavy_items[0] ? 15 : 0;
+            total += values.has_elevator && values.has_elevator[0] === 'no' ? floor * 10 : 0;
+            total += distance * 2;
+            total += urgencyPrices[urgency] || 0;
+
+            extras.forEach(function (extra) {
+                total += extraPrices[extra] || 0;
+            });
+
+            return {
+                low: roundToNearestFive(total * 0.85),
+                high: roundToNearestFive(total * 1.15)
+            };
+        }
+
+        function formatEstimateRange(estimateRange) {
+            return estimateRange.low + ' - ' + estimateRange.high + ' лв';
+        }
+
+        function updateLiveEstimate() {
+            if (!liveEstimateValue) {
+                return;
+            }
+
+            var values = rawValues();
+
+            if (!values.service_type || !values.service_type[0]) {
+                liveEstimateValue.textContent = 'Попълнете данните, за да видите примерна цена.';
+                return;
+            }
+
+            liveEstimateValue.textContent = formatEstimateRange(calculateEstimate(values));
+        }
+
         function renderSummary() {
             if (!summary || !summaryList) {
                 return;
             }
 
             var values = summaryValues();
+            var estimateRange = calculateEstimate(rawValues());
 
             summaryList.innerHTML = '';
+
+            if (estimate && estimateValue) {
+                estimateValue.textContent = formatEstimateRange(estimateRange);
+                estimate.hidden = false;
+            }
 
             Object.keys(fieldLabels).forEach(function (name) {
                 var item = document.createElement('div');
@@ -236,6 +357,10 @@
             });
 
             summary.hidden = false;
+
+            if (liveEstimate) {
+                liveEstimate.hidden = true;
+            }
 
             if (stepText) {
                 stepText.textContent = 'Преглед';
@@ -273,8 +398,14 @@
         }
 
         fields.forEach(function (field) {
-            field.addEventListener('input', clearError);
-            field.addEventListener('change', clearError);
+            field.addEventListener('input', function () {
+                clearError();
+                updateLiveEstimate();
+            });
+            field.addEventListener('change', function () {
+                clearError();
+                updateLiveEstimate();
+            });
         });
 
         if (nextButton) {

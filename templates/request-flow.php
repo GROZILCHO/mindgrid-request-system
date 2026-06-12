@@ -105,6 +105,11 @@ $request_id = isset($_GET['mgrs_request_id']) && is_string($_GET['mgrs_request_i
                     <label class="mgrs-flow__label" for="mgrs_parking_access"><?php echo esc_html__('Може ли бусът да спре близо?', 'mindgrid-request-system'); ?></label>
                     <input class="mgrs-flow__input" id="mgrs_parking_access" name="parking_access" type="text" data-mgrs-field>
                 </div>
+                <div class="mgrs-flow__field">
+                    <label class="mgrs-flow__label" for="mgrs_demo_distance_km"><?php echo esc_html__('Примерно разстояние в км', 'mindgrid-request-system'); ?></label>
+                    <input class="mgrs-flow__input" id="mgrs_demo_distance_km" name="demo_distance_km" type="number" min="0" max="300" step="0.1" inputmode="decimal" data-mgrs-field>
+                    <p class="mgrs-flow__help"><?php echo esc_html__('За демо целите разстоянието се въвежда ръчно. В бъдеща версия може да се изчислява автоматично чрез Google Maps.', 'mindgrid-request-system'); ?></p>
+                </div>
             </section>
 
             <section class="mgrs-flow__step" data-mgrs-step data-mgrs-step-index="3" hidden>
@@ -186,15 +191,26 @@ $request_id = isset($_GET['mgrs_request_id']) && is_string($_GET['mgrs_request_i
 
         <section class="mgrs-flow__summary" data-mgrs-summary hidden>
             <h3 class="mgrs-flow__step-title"><?php echo esc_html__('Преглед на заявката', 'mindgrid-request-system'); ?></h3>
+            <div class="mgrs-flow__estimate" data-mgrs-estimate hidden>
+                <p class="mgrs-flow__estimate-label"><?php echo esc_html__('Ориентировъчна цена:', 'mindgrid-request-system'); ?></p>
+                <p class="mgrs-flow__estimate-value" data-mgrs-estimate-value></p>
+                <p class="mgrs-flow__estimate-disclaimer"><?php echo esc_html__('Тази цена е ориентировъчна и не представлява финална оферта. Крайната цена се потвърждава след преглед на заявката.', 'mindgrid-request-system'); ?></p>
+            </div>
             <dl class="mgrs-flow__summary-list" data-mgrs-summary-list></dl>
             <p class="mgrs-flow__notice"><?php echo esc_html__('Моля, прегледайте информацията преди изпращане.', 'mindgrid-request-system'); ?></p>
             <ul class="mgrs-flow__notes">
-                <li><?php echo esc_html__('Тази форма не изчислява автоматична цена.', 'mindgrid-request-system'); ?></li>
+                <li><?php echo esc_html__('Тази форма показва само ориентировъчна демо цена.', 'mindgrid-request-system'); ?></li>
                 <li><?php echo esc_html__('След изпращане на заявката наш представител ще се свърже с вас за уточняване на детайлите.', 'mindgrid-request-system'); ?></li>
                 <li><?php echo esc_html__('Изпращането на заявката не представлява потвърдена резервация.', 'mindgrid-request-system'); ?></li>
                 <li><?php echo esc_html__('Окончателната оферта се изготвя след преглед на предоставената информация.', 'mindgrid-request-system'); ?></li>
             </ul>
         </section>
+
+        <div class="mgrs-flow__live-estimate" data-mgrs-live-estimate>
+            <p class="mgrs-flow__live-estimate-label"><?php echo esc_html__('Ориентировъчна цена', 'mindgrid-request-system'); ?></p>
+            <p class="mgrs-flow__live-estimate-value" data-mgrs-live-estimate-value><?php echo esc_html__('Попълнете данните, за да видите примерна цена.', 'mindgrid-request-system'); ?></p>
+            <p class="mgrs-flow__live-estimate-note"><?php echo esc_html__('Демо изчисление. Не е финална оферта.', 'mindgrid-request-system'); ?></p>
+        </div>
 
         <div class="mgrs-flow__actions">
             <button class="mgrs-flow__action mgrs-flow__action--secondary" type="button" data-mgrs-back hidden><?php echo esc_html__('Назад', 'mindgrid-request-system'); ?></button>

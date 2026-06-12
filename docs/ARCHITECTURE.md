@@ -71,6 +71,14 @@ The only Sprint 5 reusable metadata additions are:
 
 Sprint 5 does not add uploads, email notifications, autoresponders, price calculation, calendar/reservation logic, maps, AI, payments, SMS/WhatsApp, settings, builder UI, custom roles, external services, or theme changes.
 
+## Sprint 6 Demo Estimate Preview
+
+Sprint 6 adds a demo-only indicative estimate preview on the frontend review screen. The estimate is calculated in JavaScript for UX, then recalculated server-side before `_mgrs_submission_summary` is saved.
+
+The estimate uses hardcoded demo rules in `MindGrid\RequestSystem\Requests\DemoEstimateCalculator`. It is not final pricing, not a production calculator, and not a legally binding quote.
+
+Sprint 6 stores the estimate range and calculation method only in `_mgrs_submission_summary`. It does not add estimate meta fields, admin pricing settings, payment integration, Google Maps, AI, external APIs, or custom database tables.
+
 ## Statuses
 
 Request workflow status is stored as post meta under `_mgrs_status`. Statuses are centralized in `MindGrid\RequestSystem\Statuses\RequestStatuses`.
